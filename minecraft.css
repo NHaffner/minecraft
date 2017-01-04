@@ -1,7 +1,7 @@
 .container{
 
     border: solid black 1px;
-    background-color: blueviolet;
+    background-color: transparent;
     display: inline-block;
     /*width: auto;  */
 
@@ -12,9 +12,13 @@
 margin-bottom: -4px;
 }
 .box{
-    height: 45px;
-    width: 45px;
-    border: 1px solid red;
+    height: 20px;
+    width: 20px;
+    border: 1px solid white;
     display: inline-block;
-margin: 0px;
+	margin: 0px;
+}
+
+.grass {
+	background-image: url("dirt.png");
 }
