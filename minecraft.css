@@ -19,6 +19,37 @@ margin-bottom: -4px;
 	margin: 0px;
 }
 
-.grass {
-	background-image: url("dirt.png");
+/* tool box classes*/
+
+.tool {
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    vertical-align: middle;
+}
+
+#axe {
+    background-image: url("./images/axe.png");
+    background-size: cover;
+}
+
+#axe:hover,#shovel:hover,#pickaxe:hover{
+    background-color: deepskyblue;
+}
+
+#shovel {
+    background-image: url("./images/shovel.png");
+    background-size: cover;
+}
+
+#pickaxe {
+    background-image: url("./images/pickaxe.png");
+    background-size: cover;
+}
+
+#selectedBrick {
+    border: solid 1px cornsilk;
+    height: 80px;
+    width: 80px;
+    margin: 30px;
 }
