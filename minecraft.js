@@ -1,7 +1,6 @@
 var Minecraft = {};
 Minecraft.selectedTool = "";
 Minecraft.selectedDiv = "";
-
 Minecraft.init = function(){
   $(document).ready(function(){
         Minecraft.start();
@@ -26,6 +25,10 @@ Minecraft.start = function(){
     pickaxe.click(Minecraft.clickedTool);
 
     var selectedBrick = $("<div id='selectedBrick'></div>");
+    selectedBrick.click(Minecraft.copyPaste);
+
+
+
 
     tool.append(pickaxe);
     tool.append(shovel);
@@ -34,6 +37,39 @@ Minecraft.start = function(){
     var rowArray = [];
 
     //creating the grid
+
+
+
+    console.log(rowArray);
+
+// creating the world in matrix gilads example
+var world = [   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0],
+
+                [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,2,2,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0],
+
+                [0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0],
+                [0,0,0,2,2,2,0,0,0,0,0,0,0,4,4,0,3,0,0,4],
+                [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+                [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],
+]
+
+var blocks = ["sky","cloud","leaf","tree","rock","grass","dirt"];
+
     for (var i = 0; i < 20; i++) {
         var row = $("<div class='row'></div>");
         rowArray[i] = Array(20);
@@ -44,110 +80,22 @@ Minecraft.start = function(){
             box.data("column", j);
             box.attr("id", i + "-" + j); //gives each on at id
             box.click(Minecraft.pickedDiv);
+            box.addClass(blocks[world[i][j]]);
             row.append(box);
         }
     }
 
 
-    console.log(rowArray);
 
-//creating the world in matrix gilads example
-// var world = {{0,0,0,0,0,0,0,0},
-//              {0,0,0,0,1,1,0,0},
-//              {0,0,0,0,1,1,1,1},
-//              {0,0,0,0,0,0,2,2},
-// }
-//
-// var blocks = ["sky","cloud","tree"]
-//
-// if (world[i][j] == 1){
-//     add Class blocks[world[i][j]]
-// }
-// End of example
-
-
-//adding the sky to errything
-    for (var i = 0; i < 20; i++) {
-        for (var j = 0; j < 20; j++) {
-            $("#" + i + "-" + j).css("background-color", "skyblue");
-        }
-    }
-
-//setting that dirt
-    for (var i = 14; i < 20; i++) {
-        for (var j = 0; j < 20; j++) {
-            $("#" + i + "-" + j).addClass("dirt");
-
-        }
-    }
-
-//time for some grass
-    for (var i = 13; i < 14; i++) { //just want one row
-        for (var j = 0; j < 20; j++) {
-            $("#" + i + "-" + j).addClass("grass");
-        }
-    }
-
-//adding left bush
-    for (var i = 12; i < 13; i++) {
-        for (var j = 3; j < 6; j++) {
-            $("#" + i + "-" + j).addClass("leaf");
-        }
-    }
-
-//some more bush
-    $("#" + 11 + "-" + 4).addClass("leaf");
-
-//rocks
-    $("#" + 12 + "-" + 14).addClass("rock");
-    $("#" + 12 + "-" + 13).addClass("rock");
-    $("#" + 12 + "-" + 19).addClass("rock");
-
-//tree bark
-    $("#" + 12 + "-" + 16).addClass("tree");
-    $("#" + 11 + "-" + 16).addClass("tree");
-    $("#" + 10 + "-" + 16).addClass("tree");
-
-//leaf for tree
-    for (var i = 7; i < 10; i++) {
-        for (var j = 15; j < 18; j++) {
-            $("#" + i + "-" + j).addClass("leaf");
-        }
-    }
-
-//creating the cloud
-    for (var i = 6; i < 7; i++) {
-        for (var j = 3; j < 11; j++) {
-            $("#" + i + "-" + j).css("background-color", "white");
-
-        }
-    }
-//some more of the cloud...
-    $("#" + 7 + "-" + 8).css("background-color", "white");
-    $("#" + 7 + "-" + 7).css("background-color", "white");
-
-    $("#" + 5 + "-" + 10).css("background-color", "white");
-    $("#" + 5 + "-" + 9).css("background-color", "white");
-
-    $("#" + 5 + "-" + 4).css("background-color", "white");
-    $("#" + 5 + "-" + 5).css("background-color", "white");
-    $("#" + 5 + "-" + 6).css("background-color", "white");
-    $("#" + 5 + "-" + 7).css("background-color", "white");
-    $("#" + 4 + "-" + 6).css("background-color", "white");
-
-};
-
-
-
-// this function is the tool selector and updator
+// // this function is the tool selector and updator
 Minecraft.clickedTool = function () {
     if (Minecraft.selectedTool === "") {
         Minecraft.selectedTool = $(this);
         console.log(Minecraft.selectedTool);
-        $(this).css("background-color", "blue");
+        $(this).addClass("clicked");
     }
-    else if (Minecraft.selectedTool !== "") {
-        $(Minecraft.selectedTool).css("background-color", "black");
+   else if (Minecraft.selectedTool !== "") {
+       Minecraft.selectedTool.removeClass("clicked");
         Minecraft.selectedTool = "";
         Minecraft.selectedTool = $(this);
         console.log(Minecraft.selectedTool);
@@ -167,29 +115,63 @@ Minecraft.pickedDiv =function () {
         console.log(Minecraft.selectedDiv.attr("class"));
         console.log(Minecraft.selectedTool.attr("id"));
         //tree and leaf for axe
-        if (Minecraft.selectedDiv.is(".tree") && Minecraft.selectedTool.is("#axe") || 
-        Minecraft.selectedDiv.is(".leaf") && Minecraft.selectedTool.is("#axe")){
-            //is means everything you ask, you dont need to say class or id
-            alert("tree and axe");
+         //is means everything you ask, you dont need to say class or id
+        if (Minecraft.selectedDiv.is(".tree") && Minecraft.selectedTool.is("#axe")){
             Minecraft.selectedDiv.removeClass("tree");
+            $("#selectedBrick").removeClass();
+            $("#selectedBrick").addClass("tree");
+
+        } 
+
+        if (Minecraft.selectedDiv.is(".leaf") && Minecraft.selectedTool.is("#axe")){
             Minecraft.selectedDiv.removeClass("leaf");
-            // selectedDiv.click(Minecraft.axe);
+            $("#selectedBrick").removeClass();
+            $("#selectedBrick").addClass("leaf");
+            //not sure but think that its not showing in the selected brick div because its a gif
         }
+
+        if (Minecraft.selectedDiv.is(".rock") && Minecraft.selectedTool.is("#pickaxe")){
+            Minecraft.selectedDiv.removeClass("rock");
+            $("#selectedBrick").removeClass();
+            $("#selectedBrick").addClass("rock");
+        }
+
+        if (Minecraft.selectedDiv.is(".dirt") && Minecraft.selectedTool.is("#shovel")){
+            Minecraft.selectedDiv.removeClass("dirt");
+            $("#selectedBrick").removeClass();
+            $("#selectedBrick").addClass("dirt");
+
+        } 
+
+        if (Minecraft.selectedDiv.is(".grass") && Minecraft.selectedTool.is("#shovel"))  {
+            Minecraft.selectedDiv.removeClass("grass");
+            $("#selectedBrick").removeClass();
+            $("#selectedBrick").addClass("grass");
+
+        }
+
         if(Minecraft.selectedDiv.classList == Minecraft.selectedTool.classList){
             $("#selectedBrick").css("background-color", "red");
             return;
         }
-    }
+        }
 }
 
-// Minecraft.axe = function(e){
-    
+//now wana use the selected brick, make selected brick a namespace?
+
+// Minecraft.copyPaste = function(e){
+
+// //want to select the tool with the id of the string, not just the string, previously wrapped it with a dollar sign, so it is already a jquery object 
+// Minecraft.selectedTool.css("background-color","black");
+// Minecraft.selectedTool = "";
+
 // }
 
+// $(."selected").removeClass("selected");
+// $(this).addClass("selected");
 
 
-
-
+}
 
 
 
