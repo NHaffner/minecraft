@@ -84,24 +84,24 @@ Minecraft.start = function(){
 //time for some grass
     for (var i = 13; i < 14; i++) { //just want one row
         for (var j = 0; j < 20; j++) {
-            $("#" + i + "-" + j).css("background-image", "url('./images/grass.png')").css("background-size", "cover");
+            $("#" + i + "-" + j).addClass("grass");
         }
     }
 
 //adding left bush
     for (var i = 12; i < 13; i++) {
         for (var j = 3; j < 6; j++) {
-            $("#" + i + "-" + j).css("background-image", "url('./images/leaf.jpg')").css("background-size", "cover");
+            $("#" + i + "-" + j).addClass("leaf");
         }
     }
 
 //some more bush
-    $("#" + 11 + "-" + 4).css("background-image", "url('./images/leaf.jpg')").css("background-size", "cover");
+    $("#" + 11 + "-" + 4).addClass("leaf");
 
 //rocks
-    $("#" + 12 + "-" + 14).css("background-image", "url('./images/rock.png')").css("background-size", "cover");
-    $("#" + 12 + "-" + 13).css("background-image", "url('./images/rock.png')").css("background-size", "cover");
-    $("#" + 12 + "-" + 19).css("background-image", "url('./images/rock.png')").css("background-size", "cover");
+    $("#" + 12 + "-" + 14).addClass("rock");
+    $("#" + 12 + "-" + 13).addClass("rock");
+    $("#" + 12 + "-" + 19).addClass("rock");
 
 //tree bark
     $("#" + 12 + "-" + 16).addClass("tree");
@@ -111,7 +111,7 @@ Minecraft.start = function(){
 //leaf for tree
     for (var i = 7; i < 10; i++) {
         for (var j = 15; j < 18; j++) {
-            $("#" + i + "-" + j).css("background-image", "url('./images/leaf.jpg')").css("background-size", "cover");
+            $("#" + i + "-" + j).addClass("leaf");
         }
     }
 
@@ -140,7 +140,7 @@ Minecraft.start = function(){
 
 
 // this function is the tool selector and updator
-Minecraft.clickedTool=function () {
+Minecraft.clickedTool = function () {
     if (Minecraft.selectedTool === "") {
         Minecraft.selectedTool = $(this);
         console.log(Minecraft.selectedTool);
@@ -164,10 +164,16 @@ Minecraft.pickedDiv =function () {
         Minecraft.selectedDiv = $(this);
         //alert(Minecraft.selectedDiv.classList);
         //alert(Minecraft.selectedTool.classList);
-        console.log(Minecraft.selectedDiv.attr("class"))
-        console.log(Minecraft.selectedTool.attr("id"))
-        if (Minecraft.selectedDiv.is(".tree") && Minecraft.selectedTool.is("#axe")){
-            alert("tree and axe")
+        console.log(Minecraft.selectedDiv.attr("class"));
+        console.log(Minecraft.selectedTool.attr("id"));
+        //tree and leaf for axe
+        if (Minecraft.selectedDiv.is(".tree") && Minecraft.selectedTool.is("#axe") || 
+        Minecraft.selectedDiv.is(".leaf") && Minecraft.selectedTool.is("#axe")){
+            //is means everything you ask, you dont need to say class or id
+            alert("tree and axe");
+            Minecraft.selectedDiv.removeClass("tree");
+            Minecraft.selectedDiv.removeClass("leaf");
+            // selectedDiv.click(Minecraft.axe);
         }
         if(Minecraft.selectedDiv.classList == Minecraft.selectedTool.classList){
             $("#selectedBrick").css("background-color", "red");
@@ -176,7 +182,9 @@ Minecraft.pickedDiv =function () {
     }
 }
 
-
+// Minecraft.axe = function(e){
+    
+// }
 
 
 
