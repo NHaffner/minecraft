@@ -184,16 +184,17 @@ Minecraft.pickedDiv = function () {
             $("#selectedBrick").removeClass();
             $("#selectedBrick").addClass("grass");
         }
-        //
-        // else  {
-        //
-        //     Minecraft.selectedTool.addClass("wrong");
-        //     setTimeout(function () {
-        //         Minecraft.selectedTool.removeClass("wrong");
-        //         // Minecraft.selectedTool.addClass("clicked");
-        //     }, 200);
-        //
-        // }
+   
+        else  {
+
+            Minecraft.selectedTool.addClass("wrong");
+            setTimeout(function () {
+                Minecraft.selectedTool.removeClass("wrong");
+                // Minecraft.selectedTool.addClass("clicked");
+            }, 200);
+
+        }
+    
 
     }
 }
