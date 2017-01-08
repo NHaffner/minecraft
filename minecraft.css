@@ -15,6 +15,18 @@ body{
 	background-color: blue;
 }
 
+.wrong{
+    background-color: red;
+}
+
+#selectedBrick.clicked{
+    border: 1px solid greenyellow;
+}
+
+.box:hover{
+    border: solid 1px greenyellow;
+}
+
 .toolBox {
     height: 950px;
     width: 150px;
@@ -32,7 +44,7 @@ body{
 .box {
     height: 45px;
     width: 45px;
-    border: 1px solid white;
+    border: 1px solid transparent;
     display: inline-block;
     margin: 0px;
     background-size: cover;
@@ -155,4 +167,8 @@ body{
     width: 80px;
     margin: 30px;
     background-size: cover;
+}
+
+#selectedBrick:hover{
+    border: solid 1px greenyellow ;
 }
